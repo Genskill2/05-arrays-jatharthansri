@@ -64,35 +64,42 @@ float average(int a[], int b){
 
 
  
-int mode(int a[], int b){
-  int t,p=0,z;
-  z=max(a,b); 
-  int count[z+1]; 
 
-  for(int i=0;i<=z;i++){
-  
-     for(int j=0;j<b-1;j++){  
-       
-       if(a[j]==i){
-         p++;    
-       }  
-     }    
-     
-  count[i]=p;
-  
-  } 
-  
-  t=-32768;
-  int mode;
-  for(int i=0;i<z;i++){
-     if(count[i]>t){
-       t=count[i];
-       mode=i; 
-    } 
-  }
-  
-   return mode;      
-}  
+int mode(int a[], int b){
+
+int t, maxnum=-32768;
+
+for(int i=0;i<b;i++){
+    if(a[i]>maxnum)
+        maxnum = a[i];
+}
+
+t = maxnum + 1;
+int count[t];
+
+for(int i=0;i<t;i++){
+    int x=0;
+    for(int j=0; j<b; j++){
+        if(a[j]==i){
+            x++;
+        } 
+    }
+    count[i] = x;
+
+}
+
+maxnum = -32768;
+int mode;
+for(int i=0;i<t;i++){
+    if(count[i]>maxnum){
+        maxnum = count[i];
+        mode = i;
+    }
+}
+return mode;
+}
+
+
 
 
 
